@@ -23,9 +23,4 @@ class base {
     base.attachImage(torre);
     mundo.add(base);
   }
-
-  void ponerImagen() {
-    //imagen = loadImage("torre.png");
-   // image(imagen, -120, 450,360,360);
-  }
 }

@@ -37,7 +37,6 @@ class Arco{
   }
   
   void movimientoArco(){
-    
       angulo = angulo -0.01;
       angulo = constrain( angulo , 
       radians(-30) , radians(50) );
