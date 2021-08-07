@@ -20,6 +20,7 @@ class personaje {
     personaje.setName("personaje");
     normal =loadImage("normal1.png");
     personaje.setStatic(true);
+    personaje.setGrabbable(false);
     personaje.attachImage(normal);
     mundo.add(personaje);
   }
@@ -82,6 +83,7 @@ class personaje {
       personaje2.setPosition(posX, posY-200);
       personaje2.attachImage(salto);
       personaje2.setName("salto");
+      personaje2.setGrabbable(false);
       mundo.add(personaje2);
       eliminarNormal();
       eliminarCubrir();
@@ -96,6 +98,7 @@ class personaje {
       personaje3.attachImage(cubierto);
       personaje3.setStatic(true);   
       personaje3.setName("cubierto");
+      personaje3.setGrabbable(false);
       mundo.add(personaje3);
       eliminarNormal();
       eliminarSalto();
@@ -111,6 +114,7 @@ class personaje {
     personaje4.attachImage(normal);
     personaje4.setStatic(true);   
     personaje4.setName("normal");
+    personaje4.setGrabbable(false);
     mundo.add(personaje4);
     eliminarCubrir();
     eliminarSalto();

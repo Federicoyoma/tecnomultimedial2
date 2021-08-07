@@ -22,7 +22,7 @@ int tiempoOcurridoDisparar;
 
 void setup() {
   size(1200, 700);
-  
+
     tiempoOcurridoDisparar = millis();
 
   //inicializamos la libreria

@@ -2,7 +2,8 @@ class Enemigo {
 
   FWorld mundo;
   BolaDeFuego bola; 
-  FMouseJoint cadena;
+  FDistanceJoint joint;
+  
   FCircle enemigoCabeza1;
   FCircle enemigoCabeza2;
   FCircle enemigoCabeza3;
@@ -18,7 +19,8 @@ class Enemigo {
   float posCuelloY1 = 425;
   float angulo;
   float anguloVel = 1;
-
+  float tiempo, cool;
+  
   Enemigo(float tam_X, float tam_Y, FWorld mundo, BolaDeFuego bola) {
 
     this.mundo = mundo;
@@ -49,9 +51,11 @@ class Enemigo {
     enemigoCabeza1.setPosition(px, py);
     enemigoCabeza1.setName("enemigoCabeza1");
     cabeza1=loadImage("cabeza.png");
+    enemigoCabeza1.setDensity(0.3);
     enemigoCabeza1.attachImage(cabeza1);
     enemigoCabeza1.setStatic(false);
     enemigoCabeza1.setGrabbable(true);
+    //enemigoCabeza1.setDensity(2);
     mundo.add(enemigoCabeza1);
 }
 
@@ -81,46 +85,25 @@ class Enemigo {
 
 
 void cadenaCabezas(){
-cadena = new FMouseJoint(enemigoCabeza1,px,py);
-cadena.setFrequency(1);
-mundo.add(cadena);
+  joint = new FDistanceJoint(cuerpoEnemigo, enemigoCabeza1);
+  joint.setStroke(0, 0, 255);
+  joint.setFill(0, 0, 255);
+  joint.setLength(100);   //Distancia máxima que va a tratar de mantener el joint entre los 2 objetos
+  joint.setDamping(40); //Fuerza con la que va a tirar del objeto
+  joint.setFrequency(.0005); //Frecuencia con la que el joint va a tirar del objeto (creoq ue está en segundos)
+  mundo.add(joint);
+  
+  cool=200;   //Variables para ajustar los tirones del cuello
+  tiempo = 0;
 }
 
 void movimientoCabezas(){
-   cadena.setTarget(posCuelloX1, posCuelloY1); 
-  /* posCuelloX1 = posCuelloX1 - anguloVel;
-   if(posCuelloX1 < 650){
-    anguloVel = anguloVel * -1;
-   }
-   else{
-    anguloVel = anguloVel + 1; 
-   }*/
+ //Ajuste para los tirones del cuello. Cada 200 milisegundos le asigno un impulso random
+  if (millis()>tiempo+cool) {
+    enemigoCabeza1.addImpulse(random(-500, 550), random(-500, 500));
+    tiempo = millis();
+  }
 }
-
-
-
-  /*void MoverCabeza() {
-   
-   ArrayList <FBody> cuerpos = mundo.getBodies();
-   for ( FBody este : cuerpos ) {
-   String nombre = este.getName();
-   if ( nombre != null ) {
-   if ( nombre.equals("enemigoCabeza1") ) {
-   enemigoCabeza1.setRotation(radians(angulo));
-   
-   angulo = angulo -0.01;
-   angulo = constrain( angulo, 
-   radians(-30), radians(50) );
-   
-   if (angulo == radians(-30)) {
-   angulo = radians(50);
-   }
-   }
-   }
-   }
-   }*/
-
-
 
 
 
