@@ -30,6 +30,7 @@ class BolaDeFuego {
     bola.setVelocity(-1000, -100);
     bola1=loadImage("bola.png");
     tiempoOcurrido = millis();
+    bola.setGrabbable(false);
     mundo.add(bola);
   }
 
@@ -41,7 +42,7 @@ class BolaDeFuego {
     bola2.setGrabbable(true);
     bola2.setVelocity(-1000, -100);
     tiempoOcurrido = millis();
-
+    bola2.setGrabbable(false);
     mundo.add(bola2);
   }
   void dibujarB3() {
@@ -52,6 +53,7 @@ class BolaDeFuego {
     bola3.setGrabbable(true);
     bola3.setVelocity(-1000, -100);
     tiempoOcurrido = millis();
+    bola3.setGrabbable(false);
     mundo.add(bola3);
   }
 

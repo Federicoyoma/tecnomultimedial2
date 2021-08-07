@@ -52,6 +52,7 @@ void setup() {
   enemigo.dibujarCabeza1();
   enemigo.dibujarCabeza2();
   enemigo.dibujarCabeza3();
+  enemigo.cadenaCabezas();
 
   //inicio bolas de fuego
   bola = new BolaDeFuego(50, 50, mundo, enemigo);
@@ -106,9 +107,11 @@ if (millis()  > tiempoDisparar) {
   text("VidaC3: " + vidaC3, width/2+500, 50);
 
   bola.eliminarBola();
-  
-  
+  enemigo.movimientoCabezas();
 }
+
+
+
 
 void keyPressed() {
   if ( key==' ' ) {
