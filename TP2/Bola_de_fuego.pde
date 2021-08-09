@@ -2,11 +2,13 @@ class BolaDeFuego {
 
   FWorld mundo;
   Enemigo Enemigo;
-
+  FBox rectangulo1;
+  
   int ancho, alto;
   PImage bola1;
-
-  int tiempo = 2250;
+  float posRect1X = 680;
+  float posRect1Y = 450;
+  int tiempo = 1350;
   int tiempoOcurrido;
 
   BolaDeFuego(int ancho_, int alto_, FWorld mundo, Enemigo Enemigo) {
@@ -31,7 +33,9 @@ class BolaDeFuego {
     bola1=loadImage("bola.png");
     tiempoOcurrido = millis();
     bola.setGrabbable(false);
+    bola.setGroupIndex(-1);
     mundo.add(bola);
+    
   }
 
   void dibujarB2() {
@@ -43,6 +47,7 @@ class BolaDeFuego {
     bola2.setVelocity(-1000, -100);
     tiempoOcurrido = millis();
     bola2.setGrabbable(false);
+    bola2.setGroupIndex(-1);
     mundo.add(bola2);
   }
   void dibujarB3() {
@@ -54,6 +59,7 @@ class BolaDeFuego {
     bola3.setVelocity(-1000, -100);
     tiempoOcurrido = millis();
     bola3.setGrabbable(false);
+    bola3.setGroupIndex(-1);
     mundo.add(bola3);
   }
 

@@ -57,7 +57,7 @@ class Arco {
     bala.setRestitution(1.5);
     bala.setName("bala1"); 
     tiempoOcurrido = millis();
-
+    bala.setGroupIndex(-1);
     mundo.add(bala);
   }
 

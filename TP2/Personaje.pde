@@ -3,13 +3,15 @@ class personaje {
   PImage salto, normal, cubierto;
   int W, H, posX, posY, estado, cant;
   int H2;
-
+  int posSalto;
+  
   personaje( int W_, int H_) {
 
     W=W_;
     H=H_;
     posX = 110;
     posY = 428;
+    posSalto = 228;
     estado = 0;
   }
 
@@ -80,10 +82,11 @@ class personaje {
     if ( key=='w') {
       FBox personaje2 = new FBox(W, H);
       salto =loadImage("salto.png");
-      personaje2.setPosition(posX, posY-200);
+      personaje2.setPosition(posX, posSalto);
       personaje2.attachImage(salto);
       personaje2.setName("salto");
       personaje2.setGrabbable(false);
+      personaje2.setRotatable(false);
       mundo.add(personaje2);
       eliminarNormal();
       eliminarCubrir();

@@ -12,13 +12,13 @@ Arco a;                 //clases
 Enemigo enemigo;
 BolaDeFuego bola; 
 
-
-
-
 int vidasP = 10;
 int vidaC1=2, vidaC2=2, vidaC3=2;
 int tiempoDisparar = 5000;
 int tiempoOcurridoDisparar;
+
+
+
 
 void setup() {
   size(1200, 700);
@@ -53,10 +53,12 @@ void setup() {
   enemigo.dibujarCabeza2();
   enemigo.dibujarCabeza3();
   enemigo.cadenaCabezas();
-
+ 
   //inicio bolas de fuego
   bola = new BolaDeFuego(50, 50, mundo, enemigo);
 }
+
+
 
 
 void draw() {
@@ -80,23 +82,22 @@ void draw() {
  //VIDAS PERSONAJE--------------------------
  
 
-//PARA QUE DISPAREN LOS ENEMIGOS---------------------------------------
-if(frameCount %350 == 0 ){ 
+
+if(frameCount %500 == 0 ){ 
 if (millis()  > tiempoDisparar) { 
     bola.dibujarB1();
      }
  }
- if(frameCount %250 == 0 ){ 
+ if(frameCount %970 == 0 ){ 
 if (millis()  > tiempoDisparar) { 
     bola.dibujarB2();
      }
  }
- if(frameCount %400 == 0 ){ 
+ if(frameCount %850 == 0 ){ 
 if (millis()  > tiempoDisparar) { 
     bola.dibujarB3();
      }
  }
- //PARA QUE DISPAREN LOS ENEMIGOS--------------------------------------
  
  
   fill(255, 0, 0); 
