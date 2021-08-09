@@ -23,38 +23,35 @@ int tiempoOcurridoDisparar;
 void setup() {
   size(1200, 700);
 
-    tiempoOcurridoDisparar = millis();
+  tiempoOcurridoDisparar = millis();
 
-  //inicializamos la libreria
   // tuioClient  = new TuioProcessing(this);
-  Fisica.init(this);//inicializamos la libreria
+  Fisica.init(this);
 
-  fondo=loadImage("castillo2.png");//poner un array de todas las imagenes del juego
+  fondo=loadImage("castillo2.png");
 
-  //inicio un mundo//
+
   mundo=new FWorld();
   mundo.setEdges();
 
-  //inicio al personaje y dibujo//
-  p= new personaje(80, 100); //ancho,alto
+
+  p= new personaje(80, 100); 
   p.dibujarPersonaje(mundo);
 
   //incio  base//
-  Base = new base(115, 260, 90, 570); //ancho,alto,posX,posY
+  Base = new base(115, 260, 90, 570); 
   Base.dibujarBase();
 
-  //inicio clase arco
-  a = new Arco(50, 450); //posicion del arco
+  a = new Arco(50, 450); 
 
-  //inicio al enemigo
+
   enemigo = new Enemigo(200, 200, mundo, bola);
   enemigo.cuerpo();
   enemigo.dibujarCabeza1();
   enemigo.dibujarCabeza2();
   enemigo.dibujarCabeza3();
   enemigo.cadenaCabezas();
- 
-  //inicio bolas de fuego
+
   bola = new BolaDeFuego(50, 50, mundo, enemigo);
 }
 
@@ -66,47 +63,44 @@ void draw() {
   mundo.step();
   mundo.draw();
 
-
   a.movimientoArco();
   a.dibujar();  
   a.eliminarBala();
-  
-  
+
   //VIDAS PERSONAJE--------------------------
   pushStyle();
   fill(255, 0, 0); 
   textSize(20);
   textAlign(CENTER);
-  text("VIDAS PERSONAJE: " + vidasP, 140, 100);
+  text("VIDAS PERSONAJE: " + vidasP, 140, 50);
   popStyle();
- //VIDAS PERSONAJE--------------------------
- 
+  //VIDAS PERSONAJE--------------------------
 
 
-if(frameCount %500 == 0 ){ 
-if (millis()  > tiempoDisparar) { 
-    bola.dibujarB1();
-     }
- }
- if(frameCount %970 == 0 ){ 
-if (millis()  > tiempoDisparar) { 
-    bola.dibujarB2();
-     }
- }
- if(frameCount %850 == 0 ){ 
-if (millis()  > tiempoDisparar) { 
-    bola.dibujarB3();
-     }
- }
- 
- 
+
+  if (frameCount %500 == 0 ) { 
+    if (millis()  > tiempoDisparar) { 
+      bola.dibujarB1();
+    }
+  }
+  if (frameCount %970 == 0 ) { 
+    if (millis()  > tiempoDisparar) { 
+      bola.dibujarB2();
+    }
+  }
+  if (frameCount %850 == 0 ) { 
+    if (millis()  > tiempoDisparar) { 
+      bola.dibujarB3();
+    }
+  }
+
+
   fill(255, 0, 0); 
   textSize(20);
   textAlign(CENTER);
   text("VidaC1: " + vidaC1, width/2+200, 50);
   text("VidaC2: " + vidaC2, width/2+350, 50);
   text("VidaC3: " + vidaC3, width/2+500, 50);
-
   bola.eliminarBola();
   enemigo.movimientoCabezas();
 }
@@ -149,15 +143,15 @@ void contactStarted(FContact colision) {
       mundo.remove(dos);
     }
   }
-  
+
   //colision de bolas de enemigo y personaje
- if (enemigo.hayColisionEntre(colision, "bola1", "personaje") || enemigo.hayColisionEntre(colision, "bola2", "personaje") || enemigo.hayColisionEntre(colision, "bola3", "personaje")) {
-  vidasP = vidasP - 1;
+  if (enemigo.hayColisionEntre(colision, "bola1", "personaje") || enemigo.hayColisionEntre(colision, "bola2", "personaje") || enemigo.hayColisionEntre(colision, "bola3", "personaje")) {
+    vidasP = vidasP - 1;
   }
-   if (enemigo.hayColisionEntre(colision, "bola1", "salto") || enemigo.hayColisionEntre(colision, "bola2", "salto") || enemigo.hayColisionEntre(colision, "bola3", "salto")) {
-  vidasP = vidasP - 1;
+  if (enemigo.hayColisionEntre(colision, "bola1", "salto") || enemigo.hayColisionEntre(colision, "bola2", "salto") || enemigo.hayColisionEntre(colision, "bola3", "salto")) {
+    vidasP = vidasP - 1;
   }
-    if (enemigo.hayColisionEntre(colision, "bola1", "normal") || enemigo.hayColisionEntre(colision, "bola2", "normal") || enemigo.hayColisionEntre(colision, "bola3", "normal")) {
-  vidasP = vidasP - 1;
+  if (enemigo.hayColisionEntre(colision, "bola1", "normal") || enemigo.hayColisionEntre(colision, "bola2", "normal") || enemigo.hayColisionEntre(colision, "bola3", "normal")) {
+    vidasP = vidasP - 1;
   }
 }

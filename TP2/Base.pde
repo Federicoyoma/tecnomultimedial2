@@ -1,12 +1,12 @@
 class base {
-  
+
   PImage torre;
   int ancho, alto, posX, posY; 
 
 
 
   base(int ancho_, int alto_, int posX_, int posY_ ) {
-    
+
     torre = loadImage("torre0.png");
     ancho=ancho_;
     alto=alto_;

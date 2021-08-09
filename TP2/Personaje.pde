@@ -4,7 +4,7 @@ class personaje {
   int W, H, posX, posY, estado, cant;
   int H2;
   int posSalto;
-  
+
   personaje( int W_, int H_) {
 
     W=W_;
@@ -26,8 +26,8 @@ class personaje {
     personaje.attachImage(normal);
     mundo.add(personaje);
   }
-  
-  
+
+
 
 
   void eliminarNormal() {
@@ -63,8 +63,8 @@ class personaje {
       }
     }
   }
-  
-    void eliminarNormal1() {
+
+  void eliminarNormal1() {
     ArrayList <FBody> cuerpos = mundo.getBodies();
     for ( FBody este : cuerpos ) {
       String nombre = este.getName();
@@ -78,7 +78,7 @@ class personaje {
 
 
   void acciones() {
-    
+
     if ( key=='w') {
       FBox personaje2 = new FBox(W, H);
       salto =loadImage("salto.png");
@@ -108,22 +108,20 @@ class personaje {
       eliminarNormal1();
       eliminarCubrir();
     }
-  
-
-  if ( key=='d') {
-    FBox personaje4 = new FBox(W, H);
-    cubierto =loadImage("normal1.png");
-    personaje4.setPosition(posX, posY);
-    personaje4.attachImage(normal);
-    personaje4.setStatic(true);   
-    personaje4.setName("normal");
-    personaje4.setGrabbable(false);
-    mundo.add(personaje4);
-    eliminarCubrir();
-    eliminarSalto();
-    eliminarNormal1();
-  }
 
 
+    if ( key=='d') {
+      FBox personaje4 = new FBox(W, H);
+      cubierto =loadImage("normal1.png");
+      personaje4.setPosition(posX, posY);
+      personaje4.attachImage(normal);
+      personaje4.setStatic(true);   
+      personaje4.setName("normal");
+      personaje4.setGrabbable(false);
+      mundo.add(personaje4);
+      eliminarCubrir();
+      eliminarSalto();
+      eliminarNormal1();
+    }
   }
 }
