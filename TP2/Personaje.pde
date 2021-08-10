@@ -87,6 +87,7 @@ class personaje {
       personaje2.setName("salto");
       personaje2.setGrabbable(false);
       personaje2.setRotatable(false);
+      personaje2.setDensity(60);
       mundo.add(personaje2);
       eliminarNormal();
       eliminarCubrir();

@@ -4,19 +4,19 @@ import fisica.*; //importo la libreria de fisica
 
 
 PImage fondo;
-FWorld mundo;//objeto mundo de fisica
+FWorld mundo;
 
 personaje p;
 base Base;
-Arco a;                 //clases
+Arco a;                
 Enemigo enemigo;
 BolaDeFuego bola; 
+Limite limiteCabeza;
 
-int vidasP = 10;
-int vidaC1=2, vidaC2=2, vidaC3=2;
+int vidasP = 5;
+int vidaC1=4, vidaC2=4, vidaC3=4;
 int tiempoDisparar = 5000;
 int tiempoOcurridoDisparar;
-
 
 
 
@@ -34,11 +34,9 @@ void setup() {
   mundo=new FWorld();
   mundo.setEdges();
 
-
   p= new personaje(80, 100); 
   p.dibujarPersonaje(mundo);
 
-  //incio  base//
   Base = new base(115, 260, 90, 570); 
   Base.dibujarBase();
 
@@ -51,8 +49,11 @@ void setup() {
   enemigo.dibujarCabeza2();
   enemigo.dibujarCabeza3();
   enemigo.cadenaCabezas();
-
+  limiteCabeza = new Limite();
+  limiteCabeza.dibujarRects();
   bola = new BolaDeFuego(50, 50, mundo, enemigo);
+  
+ 
 }
 
 
@@ -66,15 +67,14 @@ void draw() {
   a.movimientoArco();
   a.dibujar();  
   a.eliminarBala();
-
-  //VIDAS PERSONAJE--------------------------
+ 
   pushStyle();
   fill(255, 0, 0); 
   textSize(20);
   textAlign(CENTER);
   text("VIDAS PERSONAJE: " + vidasP, 140, 50);
   popStyle();
-  //VIDAS PERSONAJE--------------------------
+  
 
 
 
@@ -103,6 +103,8 @@ void draw() {
   text("VidaC3: " + vidaC3, width/2+500, 50);
   bola.eliminarBola();
   enemigo.movimientoCabezas();
+  enemigo.movimientoCabeza2();
+  enemigo.movimientoCabeza3();
 }
 
 
@@ -124,6 +126,8 @@ void contactStarted(FContact colision) {
     vidaC1 = vidaC1 - 1;
     if (vidaC1==0) {
       mundo.remove(dos);
+      enemigo.estadoC1 = 0;
+      println(enemigo.estadoC1);
     }
   }
 
@@ -133,6 +137,8 @@ void contactStarted(FContact colision) {
     vidaC2 = vidaC2 - 1;
     if (vidaC2==0) {
       mundo.remove(dos);
+      enemigo.estadoC2 = 0;
+      println(enemigo.estadoC2);
     }
   }
   if (enemigo.hayColisionEntre(colision, "bala1", "enemigoCabeza3")) {
@@ -141,6 +147,8 @@ void contactStarted(FContact colision) {
     vidaC3 = vidaC3 - 1;
     if (vidaC3==0) {
       mundo.remove(dos);
+      enemigo.estadoC3 = 0;
+      println(enemigo.estadoC3);
     }
   }
 
